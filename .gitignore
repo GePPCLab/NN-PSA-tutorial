@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # Custom ignores
-data/
-models/
+/data/
+/models/
