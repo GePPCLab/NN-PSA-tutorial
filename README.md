@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GePPCLab/NN-PSA-tutorial/HEAD)
+
 # Pulse shape analysis and discrimination tutorial
 
 This a repository to illustrate how to train a basic multi-site event classifier
