@@ -8,5 +8,5 @@ mkdir -p data
 wget $DATA_URL -O data/$ZIP_NAME
 
 cd data/
-unzip $ZIP_NAME
+unzip -DD $ZIP_NAME
 rm $ZIP_NAME

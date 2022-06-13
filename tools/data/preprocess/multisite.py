@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.utils import shuffle as shuffle_arrays
 
-from .shift import hshift
+from .shift import add_hshift
 
-def generate_single_multisite_event(sse_pulse_arr, n,
+def generate_single_multisite_event(pulse_arr_sse, n,
                                     hshift_low=-100,
                                     hshift_high=0,
                                     amp_low=0.0,
@@ -19,7 +19,7 @@ def generate_single_multisite_event(sse_pulse_arr, n,
                          f"not {n}.")
 
     # Number of events in the array of pulses.
-    n_ev = sse_pulse_arr.shape[0]
+    n_ev = pulse_arr_sse.shape[0]
 
     # Generate multiple indexes based on the number of sites.
     # Probably no need to check if any of the indexes are the same, since it is fairly unlikely.
@@ -27,7 +27,7 @@ def generate_single_multisite_event(sse_pulse_arr, n,
 
     # This makes a copy of the data since it is not a slice.
     # See numpy advanced indexing.
-    pulses = sse_pulse_arr[indexes, :]
+    pulses = pulse_arr_sse[indexes, :]
 
     if n == 1:
         # No need for shifting or scaling if a single-site event is requested.
@@ -40,17 +40,14 @@ def generate_single_multisite_event(sse_pulse_arr, n,
         pulses *= scale
 
     # Randomly shift all of the pulses.
-    # ONLY SHIFT TO THE RIGHT (NEGATIVE) IN CASE IT BEGINS AT ZERO!!!
-    horizontal_shift = np.random.randint(low=hshift_low, high=hshift_high, size=n)
-    for i, hshift_i in enumerate(horizontal_shift):
-        hshift(pulses[i], hshift_i)
+    add_hshift(pulses, low=hshift_low, high=hshift_high, abs_shift=True, use_ends=True)
 
     # Finally, sum all of the pulses together.
     pulse = np.sum(pulses, axis=0)
 
     return pulse
 
-def generate_multisite_events(sse_pulse_arr, n_mse_dict,
+def generate_multisite_events(pulse_arr_sse, n_mse_dict,
                               n_ev_sse=None, shuffle=True, **kwargs):
     '''
     Function to generate a given number of multi-site events from a set of pulses.
@@ -64,15 +61,15 @@ def generate_multisite_events(sse_pulse_arr, n_mse_dict,
     '''
     # Initialize the array.
     if n_ev_sse is None:
-        n_ev_sse = sse_pulse_arr.shape[0]
+        n_ev_sse = pulse_arr_sse.shape[0]
 
-    samples = sse_pulse_arr.shape[1]
+    samples = pulse_arr_sse.shape[1]
 
     n_ev_all = sum(int(n_ev * (n_ev_sse if n_ev <= 1 else 1)) for n_ev in n_mse_dict.values())
 
     # Initialize arrays for storing pulses and corresponding number of sites.
-    mse_pulse_arr = np.zeros((n_ev_all, samples), dtype=np.float32)
-    nsite_arr = np.zeros((n_ev_all, 1), dtype=np.int32)
+    pulse_arr_mse = np.zeros((n_ev_all, samples), dtype=pulse_arr_sse.dtype)
+    nsite_arr = np.zeros((n_ev_all, 1), dtype=int)
 
     # Fill the arrays with multi-site events.
     n_start = 0
@@ -82,8 +79,8 @@ def generate_multisite_events(sse_pulse_arr, n_mse_dict,
 
         # Generate random multi-site events for particular number of sites.
         for ev in range(n_ev_abs):
-            pulse = generate_single_multisite_event(sse_pulse_arr, n=n_sites, **kwargs)
-            mse_pulse_arr[n_start + ev] = pulse
+            pulse = generate_single_multisite_event(pulse_arr_sse, n=n_sites, **kwargs)
+            pulse_arr_mse[n_start + ev] = pulse
 
         nsite_arr[n_start:n_start + n_ev_abs] = n_sites
 
@@ -91,6 +88,6 @@ def generate_multisite_events(sse_pulse_arr, n_mse_dict,
 
     # Shuffle the arrays at the end (along axis 0, the rows/entries).
     if shuffle:
-        mse_pulse_arr, nsite_arr = shuffle_arrays(mse_pulse_arr, nsite_arr)
+        pulse_arr_mse, nsite_arr = shuffle_arrays(pulse_arr_mse, nsite_arr)
 
-    return mse_pulse_arr, nsite_arr
+    return pulse_arr_mse, nsite_arr

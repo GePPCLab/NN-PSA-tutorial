@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 
 def hshift(pulse_arr, shift, use_ends=True, copy=False):
@@ -53,6 +55,11 @@ def add_hshift(pulse_arr, low, high, abs_shift, use_ends=True, copy=False):
     # Get the current shift (if any),
     # which is needed to perform an absolute shift.
     if abs_shift:
+        if low > 0 or high > 0:
+            warnings.warn("Shifting an array of pulses to the left "
+                          "when specifying that the shift is absolute. "
+                          "This will wrap the pulses and may not be "
+                          "your intention.")
         rise_start = (pulse_arr.shape[1] - np.argmin(pulse_arr[:, ::-1], axis=1) - 1)
     else:
         rise_start = 0
