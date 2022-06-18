@@ -17,13 +17,15 @@ If using your own computer, you will need to ensure that all
 relevant dependencies are installed.
 It is recommended to use a virtual environment.
 To construct a virtual environment with the name `env`
-and install all of the required dependencies, run the following:
+and install all of the required dependencies
+(including Jupyter for the notebooks), run the following:
 
-```
+```sh
 python3 -m venv env
 source env/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade setuptools wheel
+python3 -m pip install jupyter jupyterlab
 python3 -m pip install -r requirements.txt
 ```
 
