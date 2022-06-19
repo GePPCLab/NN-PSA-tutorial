@@ -10,10 +10,23 @@ The tutorial uses TensorFlow with the Keras API.
 
 ### Configure the environment
 
-If using Binder, the container will already contain all
+**If using Binder**, the container will already contain all
 of the required dependencies, and you can skip to the next section.
+However, please read the
+[usage guidelines](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html)
+for Binder. In particular:
 
-If using your own computer, you will need to ensure that all
+> Binder is meant for interactive and ephemeral interactive coding,
+> meaning that it is ideally suited for relatively short sessions.
+> Binder will automatically shut down user sessions that have more than
+> 10 minutes of inactivity (if you leave a jupyterlab window open in the foreground,
+> this will generally be counted as “activity”).
+
+The takeaway is that these sessions are not persistent,
+so if you make any changes you would like to keep,
+make sure to download the relevant files before exiting.
+
+**If using your own computer**, you will need to ensure that all
 relevant dependencies are installed.
 It is recommended to use a virtual environment.
 To construct a virtual environment with the name `env`
