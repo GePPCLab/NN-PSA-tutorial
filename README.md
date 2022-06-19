@@ -26,6 +26,13 @@ The takeaway is that these sessions are not persistent,
 so if you make any changes you would like to keep,
 make sure to download the relevant files before exiting.
 
+Also, the following files in this repository are used
+when creating the Binder image:
+
+* `apt.txt`
+* `requirements.txt`
+* `runtime.txt`
+
 **If using your own computer**, you will need to ensure that all
 relevant dependencies are installed.
 It is recommended to use a virtual environment.
