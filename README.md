@@ -82,3 +82,31 @@ Augmentation options include shifts and scales,
 the level of noise to be added,
 the type of noise to be added (Gaussian noise or real detector noise),
 and the proportion of multi-site events to generate.
+
+## Build and train the classifier
+
+A full tutorial for building and training a TensorFlow model from scratch
+is provided in the `tutorial_classifier_training.ipynb` Jupyter notebook.
+This file contains detailed explanations of each step
+in the model building and training process,
+as well as numerous helpful links to documentation and other resources.
+
+For more advanced training, take a look at the `train_classifiers.py` script.
+This effectively accomplishes the same thing as the notebook, but the details
+of the model and parameters are more abstracted, and there is no tutorial.
+It also contains some other features not covered in the notebook,
+including the TensorFlow Dataset API.
+
+Run `./train_classifiers.py --help` for a list of all arguments (required and optional).
+Definitions of the neural networks are contained in the `networks/classifiers.py` file.
+An example command to train a convolutional neural network is:
+
+```
+./train_classifier.py data/simulations --model-name cnn --model-dir models/classifiers --model-type cnn --X-pattern "X_noisy*.npy" --y-pattern "y_nsite*.npy" --nepochs 10
+```
+
+To create your own model using this script,
+simply add another function to the `networks/classifiers.py` file.
+You will also need to ensure that you give it a unique name
+and check for it when contstructing the model in the `train_classifiers.py` script
+(it should be a choice for the required `--model-type` argument).
