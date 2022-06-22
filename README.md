@@ -116,3 +116,12 @@ simply add another function to the `networks/classifiers.py` file.
 You will also need to ensure that you give it a unique name
 and check for it when contstructing the model in the `train_classifiers.py` script
 (it should be a choice for the required `--model-type` argument).
+
+## Analyze the classifier
+
+A full tutorial for analyzing a trained TensorFlow model
+is provided in the `tutorial_classifier_analysis.ipynb` Jupyter notebook.
+At the end, a series of questions are provided.
+You are encouraged to think about and answer as many of these as you can.
+Do note that some questions are open-ended
+while others have a more direct answer.
