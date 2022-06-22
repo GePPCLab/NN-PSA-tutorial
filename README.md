@@ -92,7 +92,8 @@ and the proportion of multi-site events to generate.
 ## Build and train the classifier
 
 A full tutorial for building and training a TensorFlow model from scratch
-is provided in the `tutorial_classifier_training.ipynb` Jupyter notebook.
+is provided in the `notebooks/tutorial_classifier_training.ipynb`
+Jupyter notebook.
 This file contains detailed explanations of each step
 in the model building and training process,
 as well as numerous helpful links to documentation and other resources.
@@ -120,7 +121,8 @@ and check for it when contstructing the model in the `train_classifiers.py` scri
 ## Analyze the classifier
 
 A full tutorial for analyzing a trained TensorFlow model
-is provided in the `tutorial_classifier_analysis.ipynb` Jupyter notebook.
+is provided in the `notebooks/tutorial_classifier_analysis.ipynb`
+Jupyter notebook.
 At the end, a series of questions are provided.
 You are encouraged to think about and answer as many of these as you can.
 Do note that some questions are open-ended
