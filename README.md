@@ -4,7 +4,8 @@
 
 This is a repository to illustrate how to train a basic multi-site event classifier
 using simulated pulses from a high purity p-point contact germanium detector.
-The tutorial uses TensorFlow with the Keras API.
+The tutorial uses [TensorFlow](https://www.tensorflow.org/)
+with the [Keras](https://keras.io/) API.
 
 ## Setup
 
