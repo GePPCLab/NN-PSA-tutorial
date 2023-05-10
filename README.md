@@ -108,7 +108,7 @@ Run `./train_classifiers.py --help` for a list of all arguments (required and op
 Definitions of the neural networks are contained in the `networks/classifiers.py` file.
 An example command to train a convolutional neural network is:
 
-```
+```sh
 ./train_classifier.py data/simulations --model-name cnn --model-dir models/classifiers --model-type cnn --X-pattern "X_noisy*.npy" --y-pattern "y_nsite*.npy" --nepochs 10
 ```
 
