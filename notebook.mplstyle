@@ -1,0 +1,11 @@
+font.size : 12
+axes.titlesize : 12
+lines.linewidth : 2
+axes.grid : True
+grid.alpha : 0.5
+figure.figsize : 7, 4
+savefig.dpi : 80
+figure.dpi : 80
+legend.labelspacing : 0.4
+legend.framealpha : 1
+legend.borderpad : 0.5
